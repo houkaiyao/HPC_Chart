@@ -1,0 +1,29 @@
+﻿<hc:Window x:Class="HPC_Chart.MainWindow"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:hc="https://handyorg.github.io/handycontrol"
+           mc:Ignorable="d"
+        Title="HPC_Chart" Height="680" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <hc:DateTimePicker Text="{Binding PickerValue, Mode=TwoWay}" Name="DataTimePicker" HorizontalAlignment="Left" Width="160" Margin="10" ShowClearButton="True" Style="{StaticResource DateTimePickerExtend}" />
+            <ComboBox x:Name="ComboBox"  Width="123" Margin="10"
+                     Text="{Binding ComboBoxValue}" ItemsSource="{Binding ComboBoxSource, Mode=OneWay}" />
+            <Button x:Name="SearchBtn"  Tag="SearchTag" Command="{Binding BtnClickCommand}" CommandParameter="{Binding Tag,RelativeSource={RelativeSource Self}}" Content="搜索" Style="{StaticResource ButtonWarning}"
+                    Width="80" Margin="10" hc:IconElement.Geometry="{StaticResource SearchGeometry}">
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+            <oxy:PlotView x:Name="PlotView" Width="780" Height="600" Margin="10 5 10 5" Controller="{Binding PlotModelController}"
+                          Model="{Binding Path= PlotModel}">
+            </oxy:PlotView>
+        </StackPanel>
+    </Grid>
+</hc:Window>
